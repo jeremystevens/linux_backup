@@ -19,13 +19,13 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-# _version__ = '0.0.1'  # current version
+# _version__ = '0.0.2'  # current version
 date
 echo "############### Backing up files on the system... ###############"
 backupfilename=blackbox_backup_`date '+%Y-%m-%d'`
-tar cvf /home/nitestryker/${backupfilename}.tar /home/*
-gzip /home/nitestryker/${backupfilename}.tar
-rm /home/nitestryker/${backupfilename}.tar
-chmod 666 /home/nitestryker/${backupfilename}.tar.gz
+tar cvf /mnt/test/G:/blackbox/${backupfilename}.tar /home/*
+gzip /mnt/test/G:/blackbox/${backupfilename}.tar
+rm /mnt/test/G:/blackbox/${backupfilename}.tar
+chmod 666 /mnt/test/G:/blackbox/${backupfilename}.tar.gz
 echo "############### Completed backing up system... ###############"
 date
