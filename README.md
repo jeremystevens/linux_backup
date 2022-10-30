@@ -31,7 +31,7 @@ Set-Service -Name sshd -StartupType 'Automatic'
 ### install sshfs 
 sudo apt install sshfs 
 
-#### mounted remote server
+#### mount remote server
 sudo sshfs -o allow_other username@x.x.x.x:/G:  /mnt/test
 
 ### backup shell script 
