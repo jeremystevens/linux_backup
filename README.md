@@ -31,8 +31,16 @@ Set-Service -Name sshd -StartupType 'Automatic'
 ### install sshfs 
 sudo apt install sshfs 
 
+### Create SSHFS Mount Directory
+sudo mkdir /mnt/test  
+
+
 #### mount remote server
 sudo sshfs -o allow_other username@x.x.x.x:/G:  /mnt/test
+
+## Verify Remote Filesystem is Mounted
+cd /mnt/test
+ls
 
 ### backup shell script 
 run backup shell script which backs up to the mounted drive /mnt/test == x.x.x.x/G:/backupfolder:
