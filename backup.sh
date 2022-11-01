@@ -19,20 +19,25 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-# _version__ = '0.0.3'  # current version
+# _version__ = '0.0.4'  # current version
 date
 START_TIME=$(date +%s)
 echo "############### Backing up files on the system... ###############"
 backupfilename=blackbox_backup_`date '+%Y-%m-%d'`
-tar cvf /mnt/test/blackbox/${backupfilename}.tar /home/*
+# get current logged in user
+user=$(whoami)
+tar cvf /home/${user}/${backupfilename}.tar  /home/${user}/Desktop/* /home/${user}/Documents/*  /home/${user}/notes/*
+sleep 1
 # use highest compression level
-gzip -9 /mnt/test/blackbox/${backupfilename}.tar
-rm /mnt/test/blackbox/${backupfilename}.tar
-# remove files older than 30 days
+gzip -9 /home/${user}/${backupfilename}.tar
+# remove files older than 30 days from the backup directory
 find /mnt/test/blackbox/ -type f -mtime +30 -exec rm {} \;
-chmod 666 /mnt/test/blackbox/${backupfilename}.tar.gz
+sleep 1
+# show progress bar and transfer to backup drive
+rsync -rt --progress /home/${user}/${backupfilename}.tar.gz /mnt/test/blackbox/
 echo "############### Completed backing up system... ###############"
 date
+rm /home/${user}/${backupfilename}.tar.gz
 END_TIME=$(date +%s)
 # convert seconds to minutes
 ELAPSED_TIME=$(($END_TIME - $START_TIME))
