@@ -21,11 +21,14 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # _version__ = '0.0.2'  # current version
 date
+START_TIME=$(date +%s)
 echo "############### Backing up files on the system... ###############"
 backupfilename=blackbox_backup_`date '+%Y-%m-%d'`
-tar cvf /mnt/test/G:/blackbox/${backupfilename}.tar /home/*
-gzip /mnt/test/G:/blackbox/${backupfilename}.tar
-rm /mnt/test/G:/blackbox/${backupfilename}.tar
-chmod 666 /mnt/test/G:/blackbox/${backupfilename}.tar.gz
+tar cvf /mnt/test/blackbox/${backupfilename}.tar /home/*
+gzip /mnt/test/blackbox/${backupfilename}.tar
+rm /mnt/test/blackbox/${backupfilename}.tar
+chmod 666 /mnt/test/blackbox/${backupfilename}.tar.gz
 echo "############### Completed backing up system... ###############"
 date
+END_TIME=$(date +%s)
+echo "It took $(($END_TIME - $START_TIME))to backup files....."
